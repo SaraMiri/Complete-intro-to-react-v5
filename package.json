@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clear-build-cache": "rm -rf dist/  .cache/",
     "dev": "parcel src/index.html",
     "unfrak": "rm -rf node_modules & rm package-lock.json & npm install",
+    "clear-build-cache": "rm -rf dist/  .cache/",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "format:check": "prettier --list-different \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet --fix",
