@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { ANIMALS } from "@frontendmasters/pet";
+import useDropdown from "./useDropDown";
 
 const SearchParams = () => {
   const [location, setLocation] = useState("Seattle, WA");
-  const [animal, setAnimal] = useState("dog");
   const [breeds, setBreeds] = useState([]);
-  const [breed, setBreed] = useState("Havanese");
+  const [animal, AnimalDropdown] = useDropdown("Animal", "dog", ANIMALS);
+  const [breed, BreedDropdown] = useDropdown("Breed", "Havanese", breeds);
 
   return (
     <div>
@@ -18,41 +19,9 @@ const SearchParams = () => {
             placeholder="Location"
             onChange={event => setLocation(event.target.value)}
           />
-          <button>Submit</button>
         </label>
-        <label htmlFor="animal">
-          Animal
-          <select
-            id="animal"
-            value={animal}
-            onChange={event => setAnimal(event.target.value)}
-            onBlur={event => setAnimal(event.target.value)}
-          >
-            <option />
-            {ANIMALS.map(animal => (
-              <option key={animal} value={animal}>
-                {animal}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label htmlFor="breed">
-          Breed
-          <select
-            id="breed"
-            value={breed}
-            onChange={event => setBreed(event.target.value)}
-            onBlur={event => setBreed(event.target.value)}
-            disabled={breeds.length === 0}
-          >
-            <option />
-            {breeds.map(breed => (
-              <option key={breed} value={breed}>
-                {breed}
-              </option>
-            ))}
-          </select>
-        </label>
+        <AnimalDropdown />
+        <BreedDropdown />
         <button>Submit</button>
       </form>
     </div>
