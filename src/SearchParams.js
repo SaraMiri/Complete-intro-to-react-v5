@@ -1,12 +1,25 @@
-import React, { useState } from "react";
-import { ANIMALS } from "@frontendmasters/pet";
+import React, { useState, useEffect } from "react";
+import pf, { ANIMALS } from "petfinder-client";
 import useDropdown from "./useDropDown";
 
+const petfinder = pf();
 const SearchParams = () => {
   const [location, setLocation] = useState("Seattle, WA");
   const [breeds, setBreeds] = useState([]);
   const [animal, AnimalDropdown] = useDropdown("Animal", "dog", ANIMALS);
-  const [breed, BreedDropdown] = useDropdown("Breed", "Havanese", breeds);
+  const [breed, BreedDropdown, setBreed] = useDropdown(
+    "Breed",
+    "Havanese",
+    breeds
+  );
+
+  useEffect(() => {
+    setBreed("");
+    setBreed([]);
+    petfinder.breed.list({ animal }).then(res => {
+      setBreeds(res.petfinder.breeds.breed);
+    }, console.error);
+  }, [animal]);
 
   return (
     <div>
