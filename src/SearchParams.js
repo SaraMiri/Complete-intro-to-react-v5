@@ -4,6 +4,7 @@ import useDropdown from "./useDropDown";
 
 const petfinder = pf();
 const SearchParams = () => {
+  const [pets, setPets] = useState([]);
   const [location, setLocation] = useState("Seattle, WA");
   const [breeds, setBreeds] = useState([]);
   const [animal, AnimalDropdown] = useDropdown("Animal", "dog", ANIMALS);
@@ -12,6 +13,17 @@ const SearchParams = () => {
     "Havanese",
     breeds
   );
+
+  async function requestPets() {
+    const res = await petfinder.pet.find({
+      location,
+      breed,
+      animal,
+      output: "full"
+    });
+
+    setPets(res.petfinder.pets.pet);
+  }
 
   useEffect(() => {
     setBreed("");
@@ -23,7 +35,12 @@ const SearchParams = () => {
 
   return (
     <div>
-      <form>
+      <form
+        onSubmit={event => {
+          event.preventDefault();
+          requestPets();
+        }}
+      >
         <label htmlFor={"location"}>
           Location
           <input
