@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "@reach/router";
+import { Link } from "@reach/router";
 
 const Pet = ({ name, animal, breed, media, location, id }) => {
   const hero = media.photos.photo[0].value;

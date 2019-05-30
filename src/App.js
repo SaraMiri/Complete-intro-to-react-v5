@@ -13,6 +13,7 @@ const App = () => {
         <header>
           <Link to="/">Adopt me!</Link>
         </header>
+        ;
         <Router>
           <SearchParams path="/" />
           <Details path="/details/:id" />

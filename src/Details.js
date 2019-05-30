@@ -1,7 +1,11 @@
 import React from "react";
 
-const Details = () => {
-  return <h1>Hola sexy</h1>;
-};
+class Details extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { loading: true };
+  }
+  //return (<h1>{props.id}</h1>)
+}
 
 export default Details;
