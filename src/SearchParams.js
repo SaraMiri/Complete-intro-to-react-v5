@@ -3,7 +3,10 @@ import pf, { ANIMALS } from "petfinder-client";
 import useDropdown from "./useDropDown";
 import Results from "./Results";
 
-const petfinder = pf();
+const petfinder = pf({
+  secret: process.env.API_SECRET,
+  key: process.env.API_KEY
+});
 const SearchParams = () => {
   const [pets, setPets] = useState([]);
   const [location, setLocation] = useState("Seattle, WA");

@@ -1,6 +1,7 @@
 import React from "react";
 import pf from "petfinder-client";
 import Carousel from "./Carousel";
+import ErrorBoundary from "./ErrorBoundary";
 
 const petfinder = pf();
 
@@ -33,15 +34,17 @@ class Details extends React.Component {
 
     const { animal, breed, location, description, name, media } = this.state;
     return (
-      <div className="details">
-        <Carousel media={media} />
-        <div>
-          <h1>{name}</h1>
-          <h2>{`${animal} - ${breed} - ${location}`}</h2>
-          <button>Adopt {name}</button>
-          <p>{description}</p>
+      <ErrorBoundary>
+        <div className="details">
+          <Carousel media={media} />
+          <div>
+            <h1>{name}</h1>
+            <h2>{`${animal} - ${breed} - ${location}`}</h2>
+            <button>Adopt {name}</button>
+            <p>{description}</p>
+          </div>
         </div>
-      </div>
+      </ErrorBoundary>
     );
   }
 }
