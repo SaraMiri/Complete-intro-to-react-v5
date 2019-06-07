@@ -20,6 +20,7 @@ class Details extends React.Component {
             data.petfinder.pet.contact.state
           }`,
           description: data.petfinder.pet.description,
+          media: data.petfinder.pet.media,
           breed: data.petfinder.pet.breeds.breed,
           loading: false
         });
