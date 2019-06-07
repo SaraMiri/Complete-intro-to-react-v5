@@ -23,18 +23,19 @@ class ErrorBoundary extends React.Component {
     }
   }
   render() {
+    if (this.state.redirect) {
+      return <Redirect to="/" />;
+    }
+
     if (this.state.hasError) {
       return (
         <h1>
-          There was an error with this listing. <Link to="/">Click here</Link>to
-          back to the home page or wait five seconds.
+          There was an error with this listing. <Link to="/">Click here</Link>{" "}
+          to back to the home page or wait five seconds.
         </h1>
       );
     }
 
-    if (this.state.redirect) {
-      return <Redirect to="/" />;
-    }
     return this.props.children;
   }
 }

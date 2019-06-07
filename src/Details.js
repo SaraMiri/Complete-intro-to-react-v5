@@ -34,19 +34,23 @@ class Details extends React.Component {
 
     const { animal, breed, location, description, name, media } = this.state;
     return (
-      <ErrorBoundary>
-        <div className="details">
-          <Carousel media={media} />
-          <div>
-            <h1>{name}</h1>
-            <h2>{`${animal} - ${breed} - ${location}`}</h2>
-            <button>Adopt {name}</button>
-            <p>{description}</p>
-          </div>
+      <div className="details">
+        <Carousel media={media} />
+        <div>
+          <h1>{name}</h1>
+          <h2>{`${animal} - ${breed} - ${location}`}</h2>
+          <button>Adopt {name}</button>
+          <p>{description}</p>
         </div>
-      </ErrorBoundary>
+      </div>
     );
   }
 }
 
-export default Details;
+export default function DetailsErrorBoundary(props) {
+  return (
+    <ErrorBoundary>
+      <Details {...props} />
+    </ErrorBoundary>
+  );
+}
