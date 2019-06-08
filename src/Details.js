@@ -2,6 +2,7 @@ import React from "react";
 import pf from "petfinder-client";
 import Carousel from "./Carousel";
 import ErrorBoundary from "./ErrorBoundary";
+import ThemeProvider from "./ThemeContext";
 
 const petfinder = pf();
 
