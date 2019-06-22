@@ -4,6 +4,7 @@ import SearchParams from "./SearchParams";
 import { Router, Link } from "@reach/router";
 import Details from "./Details";
 import ThemeContext from "./ThemeContext";
+import NavBar from "./NavBar";
 
 const FourOhFour = () => <h1>404</h1>;
 
@@ -13,9 +14,7 @@ const App = () => {
     <React.StrictMode>
       <ThemeContext.Provider value={theme}>
         <div>
-          <header>
-            <Link to="/">Adopt me!</Link>
-          </header>
+          <NavBar />
           <Router>
             <SearchParams path="/" />
             <Details path="/details/:id" />
