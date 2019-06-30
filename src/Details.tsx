@@ -1,16 +1,40 @@
 import React, { lazy } from "react";
-import pf from "petfinder-client";
+import pf, { PetMedia } from "petfinder-client";
 import Carousel from "./Carousel";
 import ErrorBoundary from "./ErrorBoundary";
 import ThemeContext from "./ThemeContext";
+import { RouteComponentProps, navigate } from "@reach/router";
 
 const Modal = lazy(() => import("./Modal"));
 
-const petfinder = pf();
+if (!process.env.API_KEY || !process.env.API_SECRET) {
+  throw new Error("No API keys available. What's wrong with you?");
+}
+const petfinder = pf({
+  key: process.env.API_KEY,
+  secret: process.env.API_SECRET
+});
 
-class Details extends React.Component {
-  state = { loading: true, showModal: false };
-  componentDidMount() {
+interface IProps {
+  id: string;
+}
+
+class Details extends React.Component<RouteComponentProps<IProps>> {
+  public state = {
+    loading: true,
+    showModal: false,
+    name: "",
+    animal: "",
+    location: "",
+    description: "",
+    media: {} as PetMedia,
+    breed: ""
+  };
+  public componentDidMount() {
+    if (!this.props.id) {
+      navigate("/");
+      return;
+    }
     petfinder.pet
       .get({
         output: "full",
@@ -28,8 +52,9 @@ class Details extends React.Component {
         });
       });
   }
-  toggleModal = () => this.setState({ showModal: !this.state.showModal });
-  render() {
+  public toggleModal = () =>
+    this.setState({ showModal: !this.state.showModal });
+  public render() {
     if (this.state.loading) {
       return <h1>loading...</h1>;
     }
@@ -77,7 +102,7 @@ class Details extends React.Component {
   }
 }
 
-export default function DetailsErrorBoundary(props) {
+export default function DetailsErrorBoundary(props: IProps) {
   return (
     <ErrorBoundary>
       <Details {...props} />
