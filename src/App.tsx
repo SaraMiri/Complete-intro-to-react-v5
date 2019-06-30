@@ -21,7 +21,6 @@ const App = () => {
             <Router>
               <SearchParams path="/" />
               <Details path="/details/:id" />
-              <FourOhFour default />
             </Router>
           </Suspense>
         </div>

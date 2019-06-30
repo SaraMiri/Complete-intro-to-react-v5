@@ -24,11 +24,7 @@ const SearchParams: FunctionComponent<RouteComponentProps> = () => {
   const [location, setLocation] = useState("Seattle, WA");
   const [breeds, setBreeds] = useState([] as string[]);
   const [animal, AnimalDropdown] = useDropdown("Animal", "dog", ANIMALS);
-  const [breed, BreedDropdown, setBreed] = useDropdown(
-    "Breed",
-    "Havanese",
-    breeds
-  );
+  const [breed, BreedDropdown, setBreed] = useDropdown("Breed", "", breeds);
 
   async function requestPets() {
     const res = await petfinder.pet.find({
@@ -42,8 +38,8 @@ const SearchParams: FunctionComponent<RouteComponentProps> = () => {
   }
 
   useEffect(() => {
+    setBreeds([]);
     setBreed("");
-    setBreed([]);
     petfinder.breed.list({ animal }).then(res => {
       setBreeds(res.petfinder.breeds.breed);
     }, console.error);

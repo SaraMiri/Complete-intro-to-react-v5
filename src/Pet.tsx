@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { Link } from "@reach/router";
 import { PetMedia } from "petfinder-client";
 
@@ -11,7 +11,7 @@ interface IProps {
   id: string;
 }
 
-const Pet = (props: IProps) => {
+const Pet: FunctionComponent<IProps> = props => {
   const { name, animal, breed, media, location, id } = props;
   const hero = media.photos.photo.length
     ? media.photos.photo[0].value
