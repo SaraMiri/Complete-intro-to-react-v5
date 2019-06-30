@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import ReactDOM from "react-dom";
-import SearchParams from "./SearchParams";
 import { Router, Link } from "@reach/router";
-import Details from "./Details";
 import ThemeContext from "./ThemeContext";
+
+const Details = lazy(() => import("./Details"));
+const SearchParams = lazy(() => import("./SearchParams"));
 
 const FourOhFour = () => <h1>404</h1>;
 
@@ -16,11 +17,13 @@ const App = () => {
           <header>
             <Link to="/">Adopt me!</Link>
           </header>
-          <Router>
-            <SearchParams path="/" />
-            <Details path="/details/:id" />
-            <FourOhFour default />
-          </Router>
+          <Suspense fallback={<h1>hey stuff is loading...</h1>}>
+            <Router>
+              <SearchParams path="/" />
+              <Details path="/details/:id" />
+              <FourOhFour default />
+            </Router>
+          </Suspense>
         </div>
       </ThemeContext.Provider>
     </React.StrictMode>

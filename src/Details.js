@@ -1,9 +1,10 @@
-import React from "react";
+import React, { lazy } from "react";
 import pf from "petfinder-client";
 import Carousel from "./Carousel";
 import ErrorBoundary from "./ErrorBoundary";
 import ThemeContext from "./ThemeContext";
-import Modal from "./Modal";
+
+const Modal = lazy(() => import("./Modal"));
 
 const petfinder = pf();
 
@@ -19,9 +20,7 @@ class Details extends React.Component {
         this.setState({
           name: data.petfinder.pet.name,
           animal: data.petfinder.pet.animal,
-          location: `${data.petfinder.pet.contact.city}, ${
-            data.petfinder.pet.contact.state
-          }`,
+          location: `${data.petfinder.pet.contact.city}, ${data.petfinder.pet.contact.state}`,
           description: data.petfinder.pet.description,
           media: data.petfinder.pet.media,
           breed: data.petfinder.pet.breeds.breed,
