@@ -13,18 +13,18 @@ const Results: FunctionComponent<IProps> = ({ pets }) => {
         <h1>No pets to show </h1>
       ) : (
         pets.map(pet => {
-          let breed;
+          let hero;
           if (Array.isArray(pet.breeds.breed)) {
-            breed = pet.breeds.breed.join(",");
+            hero = pet.breeds.breed.join(",");
           } else {
-            breed = pet.breeds.breed;
+            hero = pet.breeds.breed;
           }
           return (
             <Pet
               animal={pet.animal}
               key={pet.id}
               name={pet.name}
-              breed={pet.breed}
+              breed={pet.breeds}
               media={pet.media}
               location={`${pet.contact.city}, ${pet.contact.state}`}
               id={pet.id}

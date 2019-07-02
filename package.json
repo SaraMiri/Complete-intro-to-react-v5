@@ -1,7 +1,7 @@
 {
   "name": "complete-intro-to-react-v5",
   "version": "1.0.0",
-  "description": "",
+  "description": "This project is from the course [Complete intro to React v5](https://github.com/btholt/complete-intro-to-react-v5).",
   "main": "index.js",
   "scripts": {
     "dev": "parcel src/index.html",
