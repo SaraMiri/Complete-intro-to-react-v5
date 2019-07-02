@@ -10,6 +10,7 @@ const Modal = lazy(() => import("./Modal"));
 if (!process.env.API_KEY || !process.env.API_SECRET) {
   throw new Error("No API keys available. What's wrong with you?");
 }
+
 const petfinder = pf({
   key: process.env.API_KEY,
   secret: process.env.API_SECRET
@@ -102,9 +103,7 @@ class Details extends React.Component<RouteComponentProps<IProps>> {
   }
 }
 
-export default function DetailsErrorBoundary(
-  props: RouteComponentProps<IProps>
-) {
+export default function DetailsErrorBoundary(props: IProps) {
   return (
     <ErrorBoundary>
       <Details {...props} />

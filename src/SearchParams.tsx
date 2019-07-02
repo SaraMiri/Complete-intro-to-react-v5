@@ -34,7 +34,11 @@ const SearchParams: FunctionComponent<RouteComponentProps> = () => {
       output: "full"
     });
 
-    setPets(res.petfinder.pets.pet);
+    setPets(
+      Array.isArray(res.petfinder.pets.pet)
+        ? res.petfinder.pets.pet
+        : [res.petfinder.pets.pet]
+    );
   }
 
   useEffect(() => {
