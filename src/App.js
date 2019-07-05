@@ -1,5 +1,4 @@
 import React, { useState, lazy, Suspense } from "react";
-import ReactDOM from "react-dom";
 import { Router, Link } from "@reach/router";
 import ThemeContext from "./ThemeContext";
 
@@ -29,4 +28,5 @@ const App = () => {
     </React.StrictMode>
   );
 };
-ReactDOM.render(<App />, document.getElementById("root"));
+
+export default App;

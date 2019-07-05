@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "parcel build --public-url ./dist/ src/index.html",
     "dev": "parcel src/index.html",
     "unfrak": "rm -rf node_modules & rm package-lock.json & npm install",
     "clear-build-cache": "rm -rf dist/  .cache/",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "format:check": "prettier --list-different \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet --fix",
+    "start": "npm -s run build && babel-node server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -43,7 +45,10 @@
     "@frontendmasters/pet": "^1.0.3",
     "@reach/router": "^1.2.1",
     "axios": "^0.19.0",
+    "babel-cli": "^6.26.0",
     "babel-preset-react": "^6.24.1",
+    "express": "^4.17.1",
+    "is-node": "^1.0.2",
     "moment": "^2.24.0",
     "petfinder-client": "^2.0.3",
     "react": "^16.8.6",

@@ -1,13 +1,19 @@
 import React, { useState, useEffect, useContext } from "react";
 import pf, { ANIMALS } from "petfinder-client";
+import isNode from "is-node";
 import useDropdown from "./useDropDown";
 import Results from "./Results";
 import ThemeContext from "./ThemeContext";
 
-const petfinder = pf({
-  secret: process.env.API_SECRET,
-  key: process.env.API_KEY
-});
+let petfinder;
+
+if (!isNode) {
+  petfinder = pf({
+    key: process.env.API_KEY,
+    secret: process.env.API_SECRET
+  });
+}
+
 const SearchParams = () => {
   const [theme, setTheme] = useContext(ThemeContext);
   const [pets, setPets] = useState([]);

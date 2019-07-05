@@ -1,12 +1,20 @@
 import React, { lazy } from "react";
 import pf from "petfinder-client";
+import isNode from "is-node";
 import Carousel from "./Carousel";
 import ErrorBoundary from "./ErrorBoundary";
 import ThemeContext from "./ThemeContext";
 
 const Modal = lazy(() => import("./Modal"));
 
-const petfinder = pf();
+let petfinder;
+
+if (!isNode) {
+  petfinder = pf({
+    key: process.env.API_KEY,
+    secret: process.env.API_SECRET
+  });
+}
 
 class Details extends React.Component {
   state = { loading: true, showModal: false };
