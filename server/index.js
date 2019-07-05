@@ -14,6 +14,7 @@ const parts = html.split("not rendered");
 const app = express();
 
 app.use("/dist", express.static("dist"));
+
 app.use((req, res) => {
   res.write(parts[0]);
   const reactMarkup = (
