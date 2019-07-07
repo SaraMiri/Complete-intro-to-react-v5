@@ -34,6 +34,7 @@ const SearchParams = () => {
   useEffect(() => {
     setBreed("");
     setBreed([]);
+
     petfinder.breed.list({ animal }).then(res => {
       setBreeds(res.petfinder.breeds.breed);
     }, console.error);
